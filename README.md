@@ -12,8 +12,6 @@ If you don't want Builder to configure Ruby, as an example, just set
 `node[:polyglot][:ruby][:enable] = false`. You can do the same for Java, Python,
 Clojure, and Android (disabled by default).
 
-For Github:Enterprise integration ... (finish)
-
 ## Author
 Simple Finance <ops@simple.com>
 
