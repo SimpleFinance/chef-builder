@@ -1,4 +1,4 @@
-# Chef-builder
+# Builder
 Builder is a cookbook which configures jenkins masters/slaves for building and
 deploying projects and services, JVM-based in particular.
 
@@ -9,7 +9,7 @@ cookbook. Enable one of your instances as a Jenkins master by running `builder::
 From there, add as many build slaves as you please by running `builder::slave`. That's it!
 
 If you don't want Builder to configure Ruby, as an example, just set
-`node[:polyglot][:ruby][:enable] = false`. You can do the same for Java, Python,
+`node.override[:polyglot][:ruby][:enable] = false`. You can do the same for Java, Python,
 Clojure, and Android (disabled by default).
 
 ## Author
