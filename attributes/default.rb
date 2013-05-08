@@ -23,6 +23,7 @@ override[:jenkins][:node][:user] = 'jenkins'
 override[:jenkins][:node][:executors] = (2 * node[:cpu][:total])
 override[:jenkins][:node][:shell] = '/bin/bash'
 override[:jenkins][:node][:home] = '/mnt/jenkins'
+override[:polyglot][:user] = node[:jenkins][:node][:user]
 
 permsize = (0.2 * (node[:memory][:total].sub("kB", "").to_i/1024)).to_i
 override[:jenkins][:server][:jvm_options] = "-XX:MaxPermSize=#{permsize}m"

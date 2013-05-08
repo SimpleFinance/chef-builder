@@ -21,12 +21,7 @@
 
 include_recipe 'runit::default'
 include_recipe 'git::default'
-
-%w{ python java clojure ruby android }.each do |lang|
-  if node[:polyglot][lang][:enable]
-    include_recipe "polyglot::#{lang}"
-  end
-end
+include_recipe 'polyglot::default'
 
 node[:builder][:helper_packages].each do |pkg|
   package pkg do
