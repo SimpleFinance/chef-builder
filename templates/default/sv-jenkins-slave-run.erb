@@ -1,0 +1,5 @@
+#!/bin/sh
+[ -r /etc/profile ] && . /etc/profile
+exec 2>&1
+cd <%= @options[:home] %>
+exec chpst -e <%= @options[:envdir] %> -u <%= @options[:user] %> java -jar ./slave.jar -jnlpUrl <%= @options[:jnlp_url] %>

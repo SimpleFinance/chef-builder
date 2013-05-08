@@ -26,7 +26,13 @@ include_recipe 'nginx::default'
 include_recipe 'jenkins::server'
 include_recipe 'builder::default'
 
-resources('runit_service[jenkins]').cookbook 'builder'
+master = resources('runit_service[jenkins]')
+master.cookbook 'builder'
+master.options({
+  :user => node[:jenkins][:server][:user],
+  :home => node[:jenkins][:server][:home],
+  :jvm_opts => node[:jenkins][:server][:jvm_options],
+  :log_dir => node[:jenkins][:server][:log_dir] })
 
 template ::File.join(node[:nginx][:dir], 'conf.d', 'jenkins.conf') do
   mode 00755

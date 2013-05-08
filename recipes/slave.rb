@@ -31,6 +31,5 @@ svc.options({
   :envdir => "#{node[:runit][:sv_dir]}/jenkins-slave/env",
   :home => node[:jenkins][:node][:home],
   :user => node[:jenkins][:node][:user],
-  :jnlp_url => "#{node[:jenkins][:server][:url]}/computer/#{node[:jenkins][:node][:name]}/slave-agent.jnlp"
-})
+  :jnlp_url => "#{node[:jenkins][:server][:url]}/computer/#{node[:jenkins][:node][:name]}/slave-agent.jnlp" })
 
