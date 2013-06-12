@@ -49,3 +49,9 @@ default[:builder][:env] = {
   "RACK_ENV"     => node[:builder][:rack_env],
   "ANDROID_HOME" => node[:builder][:android][:home] }
 
+default[:builder][:kernel][:packages] = [ 
+  'fakeroot', 'build-essential', 'crash', 'kexec-tools', 'makedumpfile', 
+  'kernel-wedge', 'git-core', 'libncurses5', 'libncurses5-dev', 'libelf-dev', 
+  'asciidoc', 'binutils-dev' ]
+default[:builder][:kernel][:build_dep_done] = '/var/.build_dep_done'
+
