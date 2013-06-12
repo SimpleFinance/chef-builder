@@ -1,0 +1,4 @@
+User_Alias AMIUSERS = <%= @users.sort.join(', ') %>
+Cmnd_Alias AMICOMMANDS = <%= @commands.sort.join(', ') %>
+
+AMIUSERS ALL = NOPASSWD: AMICOMMANDS
