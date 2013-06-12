@@ -6,3 +6,4 @@ exec chpst -u <%= @options['user'] %> -U <%= @options['user'] %> \
   JENKINS_HOME=<%= @options['home'] %>/jenkins-data \
   java -jar <%= @options['jvm_opts'] %> jenkins.war \
   -Xloggc:<%= @options['log_dir'] %>/gclog.log
+
