@@ -12,6 +12,9 @@ If you don't want Builder to configure Ruby, as an example, just set
 `node.override[:polyglot][:ruby][:enable] = false`. You can do the same for Java, Python,
 Clojure, and Android (disabled by default).
 
+## Questions?
+Hop on ##simple on Freenode with any questions or concerns.
+
 ## Author
 Simple Finance <ops@simple.com>
 
