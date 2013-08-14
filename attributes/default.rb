@@ -19,21 +19,21 @@
 #
 # Attributes for Builder cookbook
 
-override[:jenkins][:node][:user] = 'jenkins'
-override[:jenkins][:node][:executors] = (2 * node[:cpu][:total])
-override[:jenkins][:node][:shell] = '/bin/bash'
-override[:jenkins][:node][:home] = '/mnt/jenkins'
-override[:polyglot][:user] = node[:jenkins][:node][:user]
+normal[:jenkins][:node][:user] = 'jenkins'
+normal[:jenkins][:node][:executors] = (2 * node[:cpu][:total])
+normal[:jenkins][:node][:shell] = '/bin/bash'
+normal[:jenkins][:node][:home] = '/mnt/jenkins'
+normal[:polyglot][:user] = node[:jenkins][:node][:user]
 
 permsize = (0.2 * (node[:memory][:total].sub("kB", "").to_i/1024)).to_i
-override[:jenkins][:server][:jvm_options] = "-XX:MaxPermSize=#{permsize}m"
-override[:jenkins][:server][:host] = 'localhost'
-override[:jenkins][:server][:home] = '/mnt/jenkins'
-override[:jenkins][:server][:port] = 8080
-override[:jenkins][:server][:group] = 'jenkins'
-override[:jenkins][:server][:url] = 'localhost'
-override[:jenkins][:server][:plugins] = [ 'embeddable-build-status', 'tasks', 'analysis-core', 'checkstyle' ]
-override[:jenkins][:server][:data_dir] = ::File.join(node[:jenkins][:server][:home], 'jenkins-data')
+normal[:jenkins][:server][:jvm_options] = "-XX:MaxPermSize=#{permsize}m"
+normal[:jenkins][:server][:host] = 'localhost'
+normal[:jenkins][:server][:home] = '/mnt/jenkins'
+normal[:jenkins][:server][:url] = 'jenkins'
+normal[:jenkins][:server][:port] = 8080
+normal[:jenkins][:server][:group] = 'jenkins'
+normal[:jenkins][:server][:plugins] = [ 'embeddable-build-status', 'tasks', 'analysis-core', 'checkstyle' ]
+normal[:jenkins][:server][:data_dir] = ::File.join(node[:jenkins][:server][:home], 'jenkins-data')
 
 # Builder environment / slave config
 default[:builder][:helper_packages] = %w{ tmpreaper zip unzip }
@@ -41,13 +41,12 @@ default[:builder][:slave_strategy] = 'jnlp'
 default[:builder][:encoding] = 'en_US.UTF-8'
 default[:builder][:tmp_dir] = ::File.join(node[:jenkins][:node][:home], 'workspace-tmp')
 default[:builder][:rack_env] = 'jenkins'
-default[:builder][:env] = {
-  "HOME"         => node[:jenkins][:node][:home],
-  "LANG"         => node[:builder][:encoding],
-  "LC_CTYPE"     => node[:builder][:encoding],
-  "TMPDIR"       => node[:builder][:tmp_dir],
-  "RACK_ENV"     => node[:builder][:rack_env],
-  "ANDROID_HOME" => node[:builder][:android][:home] }
+default[:builder][:data_bag_item] = 'known_hosts'
+default[:builder][:env]["HOME"] = node[:jenkins][:node][:home]
+default[:builder][:env]["LANG"] = node[:builder][:encoding]
+default[:builder][:env]["LC_CTYPE"] = node[:builder][:encoding]
+default[:builder][:env]["TMPDIR"] = node[:builder][:tmp_dir]
+default[:builder][:env]["RACK_ENV"] = node[:builder][:rack_env]
 
 default[:builder][:kernel][:packages] = [ 
   'fakeroot', 'build-essential', 'crash', 'kexec-tools', 'makedumpfile', 
