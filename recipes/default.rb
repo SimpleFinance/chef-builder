@@ -34,7 +34,7 @@ template ::File.join(node[:jenkins][:node][:home], '.ssh', 'known_hosts') do
   group node[:jenkins][:node][:group]
   mode 00644
   variables(
-    :hashes => data_bag_item(:builder, :known_hosts)['hashes'] )
+    :hashes => data_bag_item(:builder, node[:builder][:data_bag_item])['hashes'] )
   action :create
 end
 
