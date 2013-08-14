@@ -1,9 +1,9 @@
 #!/bin/sh
-cd <%= @options['home'] %>
+cd <%= @options[:home] %>
 touch jenkins.start
-exec chpst -u <%= @options['user'] %> -U <%= @options['user'] %> \
-  env HOME=<%= @options['home'] %> \
-  JENKINS_HOME=<%= @options['home'] %>/jenkins-data \
-  java -jar <%= @options['jvm_opts'] %> jenkins.war \
-  -Xloggc:<%= @options['log_dir'] %>/gclog.log
+exec chpst -u <%= @options[:user] %> -U <%= @options[:user] %> \
+  env HOME=<%= @options[:home] %> \
+  JENKINS_HOME=<%= @options[:home] %>/jenkins-data \
+  java -jar <%= @options[:jvm_opts] %> jenkins.war \
+  -Xloggc:<%= @options[:log_dir] %>/gclog.log
 
